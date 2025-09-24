@@ -19,7 +19,6 @@ model User {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  // Relations
   createdEvents Event[] @relation("EventCreator")
 }
 
@@ -37,7 +36,7 @@ model Event {
   createdById String
   createdBy   User   @relation("EventCreator", fields: [createdById], references: [id])
 
-  attendees Attendee[]
+  attendees Attendee[] // Cascade delete attendees
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
@@ -45,7 +44,7 @@ model Event {
 model Attendee {
   id      String @id @default(uuid())
   eventId String
-  event   Event  @relation(fields: [eventId], references: [id])
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
   fullName      String
   email         String
@@ -54,9 +53,9 @@ model Attendee {
   checkedIn     Boolean       @default(false)
 
   payment   Payment?
+  ticket    Ticket?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Ticket    Ticket?
 
   @@unique([email, eventId]) // Prevent duplicate registrations per event
 }
@@ -64,7 +63,7 @@ model Attendee {
 model Payment {
   id         String   @id @default(uuid())
   attendeeId String   @unique
-  attendee   Attendee @relation(fields: [attendeeId], references: [id])
+  attendee   Attendee @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
 
   amount       Float
   status       PaymentStatus
@@ -74,19 +73,19 @@ model Payment {
   updatedAt    DateTime      @updatedAt
 }
 
+model Ticket {
+  id          String    @id @default(uuid())
+  code        String    @unique
+  attendeeId  String    @unique
+  attendee    Attendee  @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
+  issuedAt    DateTime  @default(now())
+  checkedIn   Boolean   @default(false)
+  checkedInAt DateTime?
+}
+
 enum PaymentStatus {
   PENDING
   SUCCESS
   FAILED
   REFUNDED
-}
-
-model Ticket {
-  id          String    @id @default(uuid())
-  code        String    @unique
-  attendeeId  String    @unique
-  attendee    Attendee  @relation(fields: [attendeeId], references: [id])
-  issuedAt    DateTime  @default(now())
-  checkedIn   Boolean   @default(false)
-  checkedInAt DateTime?
 }
