@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String    @id @default(uuid())
+  fullName         String
+  email            String    @unique
+  password         String
+  avatar           String?
+  refreshToken     String?   @unique
+  resetToken       String?   @unique
+  resetTokenExpiry DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  createdEvents Event[] @relation("EventCreator")
+}
+
+model Event {
+  id              String    @id @default(uuid())
+  title           String
+  bannerURL       String
+  requiresPayment Boolean   @default(false)
+  amount          Float? // Ticket price if requiresPayment=true
+  formFields      Json // Dynamic registration form
+  isClosed        Boolean   @default(false)
+  startsAt        DateTime?
+  endsAt          DateTime?
+
+  createdById String
+  createdBy   User   @relation("EventCreator", fields: [createdById], references: [id])
+
+  attendees Attendee[] // Cascade delete attendees
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Attendee {
+  id      String @id @default(uuid())
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  fullName      String
+  email         String
+  paymentStatus PaymentStatus @default(PENDING)
+  ticketCode    String        @unique
+  checkedIn     Boolean       @default(false)
+
+  payment   Payment?
+  ticket    Ticket?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([email, eventId]) // Prevent duplicate registrations per event
+}
+
+model Payment {
+  id         String   @id @default(uuid())
+  attendeeId String   @unique
+  attendee   Attendee @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
+
+  amount       Float
+  status       PaymentStatus
+  providerRef  String? // Razorpay payment ID
+  errorMessage String? // For failed payments
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Ticket {
+  id          String    @id @default(uuid())
+  code        String    @unique
+  attendeeId  String    @unique
+  attendee    Attendee  @relation(fields: [attendeeId], references: [id], onDelete: Cascade)
+  issuedAt    DateTime  @default(now())
+  checkedIn   Boolean   @default(false)
+  checkedInAt DateTime?
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}

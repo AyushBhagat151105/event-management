@@ -10,9 +10,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix('api/v1');
   const config = new DocumentBuilder()
-    .setTitle('Note apis documentation')
-    .setDescription('This is the documentation for notes api.')
+    .setTitle('Event-Management apis documentation')
+    .setDescription('This is the documentation for Event-Management api.')
     .setVersion('1.0')
     .addTag('Notes')
     .build();
@@ -25,7 +26,7 @@ async function bootstrap() {
       content: document,
       layout: 'modern',
       metaData: {
-        title: 'Notes API Reference',
+        title: 'Event-Management API Reference',
         description: 'Beautiful API docs using Scalar',
       },
       theme: 'deepSpace',
