@@ -5956,7 +5956,6 @@ export namespace Prisma {
 
   export type TicketMinAggregateOutputType = {
     id: string | null
-    code: string | null
     attendeeId: string | null
     issuedAt: Date | null
     checkedIn: boolean | null
@@ -5965,7 +5964,6 @@ export namespace Prisma {
 
   export type TicketMaxAggregateOutputType = {
     id: string | null
-    code: string | null
     attendeeId: string | null
     issuedAt: Date | null
     checkedIn: boolean | null
@@ -5974,7 +5972,6 @@ export namespace Prisma {
 
   export type TicketCountAggregateOutputType = {
     id: number
-    code: number
     attendeeId: number
     issuedAt: number
     checkedIn: number
@@ -5985,7 +5982,6 @@ export namespace Prisma {
 
   export type TicketMinAggregateInputType = {
     id?: true
-    code?: true
     attendeeId?: true
     issuedAt?: true
     checkedIn?: true
@@ -5994,7 +5990,6 @@ export namespace Prisma {
 
   export type TicketMaxAggregateInputType = {
     id?: true
-    code?: true
     attendeeId?: true
     issuedAt?: true
     checkedIn?: true
@@ -6003,7 +5998,6 @@ export namespace Prisma {
 
   export type TicketCountAggregateInputType = {
     id?: true
-    code?: true
     attendeeId?: true
     issuedAt?: true
     checkedIn?: true
@@ -6085,7 +6079,6 @@ export namespace Prisma {
 
   export type TicketGroupByOutputType = {
     id: string
-    code: string
     attendeeId: string
     issuedAt: Date
     checkedIn: boolean
@@ -6111,7 +6104,6 @@ export namespace Prisma {
 
   export type TicketSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    code?: boolean
     attendeeId?: boolean
     issuedAt?: boolean
     checkedIn?: boolean
@@ -6121,7 +6113,6 @@ export namespace Prisma {
 
   export type TicketSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    code?: boolean
     attendeeId?: boolean
     issuedAt?: boolean
     checkedIn?: boolean
@@ -6131,7 +6122,6 @@ export namespace Prisma {
 
   export type TicketSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    code?: boolean
     attendeeId?: boolean
     issuedAt?: boolean
     checkedIn?: boolean
@@ -6141,14 +6131,13 @@ export namespace Prisma {
 
   export type TicketSelectScalar = {
     id?: boolean
-    code?: boolean
     attendeeId?: boolean
     issuedAt?: boolean
     checkedIn?: boolean
     checkedInAt?: boolean
   }
 
-  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "attendeeId" | "issuedAt" | "checkedIn" | "checkedInAt", ExtArgs["result"]["ticket"]>
+  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "attendeeId" | "issuedAt" | "checkedIn" | "checkedInAt", ExtArgs["result"]["ticket"]>
   export type TicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendee?: boolean | AttendeeDefaultArgs<ExtArgs>
   }
@@ -6166,7 +6155,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      code: string
       attendeeId: string
       issuedAt: Date
       checkedIn: boolean
@@ -6596,7 +6584,6 @@ export namespace Prisma {
    */ 
   interface TicketFieldRefs {
     readonly id: FieldRef<"Ticket", 'String'>
-    readonly code: FieldRef<"Ticket", 'String'>
     readonly attendeeId: FieldRef<"Ticket", 'String'>
     readonly issuedAt: FieldRef<"Ticket", 'DateTime'>
     readonly checkedIn: FieldRef<"Ticket", 'Boolean'>
@@ -7094,7 +7081,6 @@ export namespace Prisma {
 
   export const TicketScalarFieldEnum: {
     id: 'id',
-    code: 'code',
     attendeeId: 'attendeeId',
     issuedAt: 'issuedAt',
     checkedIn: 'checkedIn',
@@ -7577,7 +7563,6 @@ export namespace Prisma {
     OR?: TicketWhereInput[]
     NOT?: TicketWhereInput | TicketWhereInput[]
     id?: StringFilter<"Ticket"> | string
-    code?: StringFilter<"Ticket"> | string
     attendeeId?: StringFilter<"Ticket"> | string
     issuedAt?: DateTimeFilter<"Ticket"> | Date | string
     checkedIn?: BoolFilter<"Ticket"> | boolean
@@ -7587,7 +7572,6 @@ export namespace Prisma {
 
   export type TicketOrderByWithRelationInput = {
     id?: SortOrder
-    code?: SortOrder
     attendeeId?: SortOrder
     issuedAt?: SortOrder
     checkedIn?: SortOrder
@@ -7597,7 +7581,6 @@ export namespace Prisma {
 
   export type TicketWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    code?: string
     attendeeId?: string
     AND?: TicketWhereInput | TicketWhereInput[]
     OR?: TicketWhereInput[]
@@ -7606,11 +7589,10 @@ export namespace Prisma {
     checkedIn?: BoolFilter<"Ticket"> | boolean
     checkedInAt?: DateTimeNullableFilter<"Ticket"> | Date | string | null
     attendee?: XOR<AttendeeScalarRelationFilter, AttendeeWhereInput>
-  }, "id" | "code" | "attendeeId">
+  }, "id" | "attendeeId">
 
   export type TicketOrderByWithAggregationInput = {
     id?: SortOrder
-    code?: SortOrder
     attendeeId?: SortOrder
     issuedAt?: SortOrder
     checkedIn?: SortOrder
@@ -7625,7 +7607,6 @@ export namespace Prisma {
     OR?: TicketScalarWhereWithAggregatesInput[]
     NOT?: TicketScalarWhereWithAggregatesInput | TicketScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Ticket"> | string
-    code?: StringWithAggregatesFilter<"Ticket"> | string
     attendeeId?: StringWithAggregatesFilter<"Ticket"> | string
     issuedAt?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
     checkedIn?: BoolWithAggregatesFilter<"Ticket"> | boolean
@@ -8004,7 +7985,6 @@ export namespace Prisma {
 
   export type TicketCreateInput = {
     id?: string
-    code: string
     issuedAt?: Date | string
     checkedIn?: boolean
     checkedInAt?: Date | string | null
@@ -8013,7 +7993,6 @@ export namespace Prisma {
 
   export type TicketUncheckedCreateInput = {
     id?: string
-    code: string
     attendeeId: string
     issuedAt?: Date | string
     checkedIn?: boolean
@@ -8022,7 +8001,6 @@ export namespace Prisma {
 
   export type TicketUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
     checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8031,7 +8009,6 @@ export namespace Prisma {
 
   export type TicketUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     attendeeId?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -8040,7 +8017,6 @@ export namespace Prisma {
 
   export type TicketCreateManyInput = {
     id?: string
-    code: string
     attendeeId: string
     issuedAt?: Date | string
     checkedIn?: boolean
@@ -8049,7 +8025,6 @@ export namespace Prisma {
 
   export type TicketUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
     checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8057,7 +8032,6 @@ export namespace Prisma {
 
   export type TicketUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     attendeeId?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -8537,7 +8511,6 @@ export namespace Prisma {
 
   export type TicketCountOrderByAggregateInput = {
     id?: SortOrder
-    code?: SortOrder
     attendeeId?: SortOrder
     issuedAt?: SortOrder
     checkedIn?: SortOrder
@@ -8546,7 +8519,6 @@ export namespace Prisma {
 
   export type TicketMaxOrderByAggregateInput = {
     id?: SortOrder
-    code?: SortOrder
     attendeeId?: SortOrder
     issuedAt?: SortOrder
     checkedIn?: SortOrder
@@ -8555,7 +8527,6 @@ export namespace Prisma {
 
   export type TicketMinOrderByAggregateInput = {
     id?: SortOrder
-    code?: SortOrder
     attendeeId?: SortOrder
     issuedAt?: SortOrder
     checkedIn?: SortOrder
@@ -9318,7 +9289,6 @@ export namespace Prisma {
 
   export type TicketCreateWithoutAttendeeInput = {
     id?: string
-    code: string
     issuedAt?: Date | string
     checkedIn?: boolean
     checkedInAt?: Date | string | null
@@ -9326,7 +9296,6 @@ export namespace Prisma {
 
   export type TicketUncheckedCreateWithoutAttendeeInput = {
     id?: string
-    code: string
     issuedAt?: Date | string
     checkedIn?: boolean
     checkedInAt?: Date | string | null
@@ -9422,7 +9391,6 @@ export namespace Prisma {
 
   export type TicketUpdateWithoutAttendeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
     checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9430,7 +9398,6 @@ export namespace Prisma {
 
   export type TicketUncheckedUpdateWithoutAttendeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     issuedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
     checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

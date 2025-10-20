@@ -170,7 +170,6 @@ exports.Prisma.PaymentScalarFieldEnum = {
 
 exports.Prisma.TicketScalarFieldEnum = {
   id: 'id',
-  code: 'code',
   attendeeId: 'attendeeId',
   issuedAt: 'issuedAt',
   checkedIn: 'checkedIn',
