@@ -33,7 +33,7 @@ import {
 import { UserGuard } from 'src/user/user.guard';
 import type { AuthenticatedRequest } from 'src/types/authenticated-request.interface.ts';
 
-@ApiTags('events')
+@ApiTags('Events')
 @Controller('event')
 export class EventController {
   constructor(private readonly eventService: EventService) {}

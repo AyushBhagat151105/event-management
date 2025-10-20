@@ -150,6 +150,7 @@ exports.Prisma.AttendeeScalarFieldEnum = {
   eventId: 'eventId',
   fullName: 'fullName',
   email: 'email',
+  formResponses: 'formResponses',
   paymentStatus: 'paymentStatus',
   ticketCode: 'ticketCode',
   checkedIn: 'checkedIn',

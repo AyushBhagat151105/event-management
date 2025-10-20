@@ -9,6 +9,12 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: '*',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('api/v1');
   const config = new DocumentBuilder()

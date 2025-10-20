@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
   getHello(): { message: string } {
     return {
-      message: 'Welcome to the Event Management API!',
+      message: 'Helth check successful. \nThe Event Management API is running.',
     };
   }
 }

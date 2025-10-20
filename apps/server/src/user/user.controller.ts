@@ -30,7 +30,7 @@ import {
   UserProfileResponseDto,
 } from './dto/user-response.dto';
 
-@ApiTags('user')
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

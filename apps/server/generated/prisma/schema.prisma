@@ -49,8 +49,9 @@ model Attendee {
 
   fullName      String
   email         String
+  formResponses Json
   paymentStatus PaymentStatus @default(PENDING)
-  ticketCode    String        @unique
+  ticketCode    String        @unique @default(uuid())
   checkedIn     Boolean       @default(false)
 
   payment   Payment?

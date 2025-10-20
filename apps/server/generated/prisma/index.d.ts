@@ -3696,6 +3696,7 @@ export namespace Prisma {
     eventId: number
     fullName: number
     email: number
+    formResponses: number
     paymentStatus: number
     ticketCode: number
     checkedIn: number
@@ -3734,6 +3735,7 @@ export namespace Prisma {
     eventId?: true
     fullName?: true
     email?: true
+    formResponses?: true
     paymentStatus?: true
     ticketCode?: true
     checkedIn?: true
@@ -3819,6 +3821,7 @@ export namespace Prisma {
     eventId: string
     fullName: string
     email: string
+    formResponses: JsonValue
     paymentStatus: $Enums.PaymentStatus
     ticketCode: string
     checkedIn: boolean
@@ -3848,6 +3851,7 @@ export namespace Prisma {
     eventId?: boolean
     fullName?: boolean
     email?: boolean
+    formResponses?: boolean
     paymentStatus?: boolean
     ticketCode?: boolean
     checkedIn?: boolean
@@ -3863,6 +3867,7 @@ export namespace Prisma {
     eventId?: boolean
     fullName?: boolean
     email?: boolean
+    formResponses?: boolean
     paymentStatus?: boolean
     ticketCode?: boolean
     checkedIn?: boolean
@@ -3876,6 +3881,7 @@ export namespace Prisma {
     eventId?: boolean
     fullName?: boolean
     email?: boolean
+    formResponses?: boolean
     paymentStatus?: boolean
     ticketCode?: boolean
     checkedIn?: boolean
@@ -3889,6 +3895,7 @@ export namespace Prisma {
     eventId?: boolean
     fullName?: boolean
     email?: boolean
+    formResponses?: boolean
     paymentStatus?: boolean
     ticketCode?: boolean
     checkedIn?: boolean
@@ -3896,7 +3903,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type AttendeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "fullName" | "email" | "paymentStatus" | "ticketCode" | "checkedIn" | "createdAt" | "updatedAt", ExtArgs["result"]["attendee"]>
+  export type AttendeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "fullName" | "email" | "formResponses" | "paymentStatus" | "ticketCode" | "checkedIn" | "createdAt" | "updatedAt", ExtArgs["result"]["attendee"]>
   export type AttendeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
     payment?: boolean | Attendee$paymentArgs<ExtArgs>
@@ -3921,6 +3928,7 @@ export namespace Prisma {
       eventId: string
       fullName: string
       email: string
+      formResponses: Prisma.JsonValue
       paymentStatus: $Enums.PaymentStatus
       ticketCode: string
       checkedIn: boolean
@@ -4356,6 +4364,7 @@ export namespace Prisma {
     readonly eventId: FieldRef<"Attendee", 'String'>
     readonly fullName: FieldRef<"Attendee", 'String'>
     readonly email: FieldRef<"Attendee", 'String'>
+    readonly formResponses: FieldRef<"Attendee", 'Json'>
     readonly paymentStatus: FieldRef<"Attendee", 'PaymentStatus'>
     readonly ticketCode: FieldRef<"Attendee", 'String'>
     readonly checkedIn: FieldRef<"Attendee", 'Boolean'>
@@ -7055,6 +7064,7 @@ export namespace Prisma {
     eventId: 'eventId',
     fullName: 'fullName',
     email: 'email',
+    formResponses: 'formResponses',
     paymentStatus: 'paymentStatus',
     ticketCode: 'ticketCode',
     checkedIn: 'checkedIn',
@@ -7412,6 +7422,7 @@ export namespace Prisma {
     eventId?: StringFilter<"Attendee"> | string
     fullName?: StringFilter<"Attendee"> | string
     email?: StringFilter<"Attendee"> | string
+    formResponses?: JsonFilter<"Attendee">
     paymentStatus?: EnumPaymentStatusFilter<"Attendee"> | $Enums.PaymentStatus
     ticketCode?: StringFilter<"Attendee"> | string
     checkedIn?: BoolFilter<"Attendee"> | boolean
@@ -7427,6 +7438,7 @@ export namespace Prisma {
     eventId?: SortOrder
     fullName?: SortOrder
     email?: SortOrder
+    formResponses?: SortOrder
     paymentStatus?: SortOrder
     ticketCode?: SortOrder
     checkedIn?: SortOrder
@@ -7447,6 +7459,7 @@ export namespace Prisma {
     eventId?: StringFilter<"Attendee"> | string
     fullName?: StringFilter<"Attendee"> | string
     email?: StringFilter<"Attendee"> | string
+    formResponses?: JsonFilter<"Attendee">
     paymentStatus?: EnumPaymentStatusFilter<"Attendee"> | $Enums.PaymentStatus
     checkedIn?: BoolFilter<"Attendee"> | boolean
     createdAt?: DateTimeFilter<"Attendee"> | Date | string
@@ -7461,6 +7474,7 @@ export namespace Prisma {
     eventId?: SortOrder
     fullName?: SortOrder
     email?: SortOrder
+    formResponses?: SortOrder
     paymentStatus?: SortOrder
     ticketCode?: SortOrder
     checkedIn?: SortOrder
@@ -7479,6 +7493,7 @@ export namespace Prisma {
     eventId?: StringWithAggregatesFilter<"Attendee"> | string
     fullName?: StringWithAggregatesFilter<"Attendee"> | string
     email?: StringWithAggregatesFilter<"Attendee"> | string
+    formResponses?: JsonWithAggregatesFilter<"Attendee">
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Attendee"> | $Enums.PaymentStatus
     ticketCode?: StringWithAggregatesFilter<"Attendee"> | string
     checkedIn?: BoolWithAggregatesFilter<"Attendee"> | boolean
@@ -7820,8 +7835,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7835,8 +7851,9 @@ export namespace Prisma {
     eventId: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7848,6 +7865,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -7863,6 +7881,7 @@ export namespace Prisma {
     eventId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -7877,8 +7896,9 @@ export namespace Prisma {
     eventId: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7888,6 +7908,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -7900,6 +7921,7 @@ export namespace Prisma {
     eventId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -8395,6 +8417,7 @@ export namespace Prisma {
     eventId?: SortOrder
     fullName?: SortOrder
     email?: SortOrder
+    formResponses?: SortOrder
     paymentStatus?: SortOrder
     ticketCode?: SortOrder
     checkedIn?: SortOrder
@@ -9127,8 +9150,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9140,8 +9164,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9220,6 +9245,7 @@ export namespace Prisma {
     eventId?: StringFilter<"Attendee"> | string
     fullName?: StringFilter<"Attendee"> | string
     email?: StringFilter<"Attendee"> | string
+    formResponses?: JsonFilter<"Attendee">
     paymentStatus?: EnumPaymentStatusFilter<"Attendee"> | $Enums.PaymentStatus
     ticketCode?: StringFilter<"Attendee"> | string
     checkedIn?: BoolFilter<"Attendee"> | boolean
@@ -9407,8 +9433,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9421,8 +9448,9 @@ export namespace Prisma {
     eventId: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9449,6 +9477,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9463,6 +9492,7 @@ export namespace Prisma {
     eventId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9475,8 +9505,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9489,8 +9520,9 @@ export namespace Prisma {
     eventId: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9517,6 +9549,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9531,6 +9564,7 @@ export namespace Prisma {
     eventId?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9601,8 +9635,9 @@ export namespace Prisma {
     id?: string
     fullName: string
     email: string
+    formResponses: JsonNullValueInput | InputJsonValue
     paymentStatus?: $Enums.PaymentStatus
-    ticketCode: string
+    ticketCode?: string
     checkedIn?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9612,6 +9647,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9625,6 +9661,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
@@ -9638,6 +9675,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    formResponses?: JsonNullValueInput | InputJsonValue
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     ticketCode?: StringFieldUpdateOperationsInput | string
     checkedIn?: BoolFieldUpdateOperationsInput | boolean
