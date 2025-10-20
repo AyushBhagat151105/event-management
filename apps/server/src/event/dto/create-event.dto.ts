@@ -20,6 +20,10 @@ export class CreateEventDto {
   bannerURL: string;
 
   @IsNotEmpty()
+  @IsString()
+  location: string;
+
+  @IsNotEmpty()
   @IsBoolean()
   requiresPayment: boolean;
 

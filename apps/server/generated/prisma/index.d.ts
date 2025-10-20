@@ -2473,6 +2473,7 @@ export namespace Prisma {
     title: string | null
     bannerURL: string | null
     requiresPayment: boolean | null
+    location: string | null
     amount: number | null
     isClosed: boolean | null
     startsAt: Date | null
@@ -2487,6 +2488,7 @@ export namespace Prisma {
     title: string | null
     bannerURL: string | null
     requiresPayment: boolean | null
+    location: string | null
     amount: number | null
     isClosed: boolean | null
     startsAt: Date | null
@@ -2501,6 +2503,7 @@ export namespace Prisma {
     title: number
     bannerURL: number
     requiresPayment: number
+    location: number
     amount: number
     formFields: number
     isClosed: number
@@ -2526,6 +2529,7 @@ export namespace Prisma {
     title?: true
     bannerURL?: true
     requiresPayment?: true
+    location?: true
     amount?: true
     isClosed?: true
     startsAt?: true
@@ -2540,6 +2544,7 @@ export namespace Prisma {
     title?: true
     bannerURL?: true
     requiresPayment?: true
+    location?: true
     amount?: true
     isClosed?: true
     startsAt?: true
@@ -2554,6 +2559,7 @@ export namespace Prisma {
     title?: true
     bannerURL?: true
     requiresPayment?: true
+    location?: true
     amount?: true
     formFields?: true
     isClosed?: true
@@ -2656,6 +2662,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment: boolean
+    location: string
     amount: number | null
     formFields: JsonValue
     isClosed: boolean
@@ -2690,6 +2697,7 @@ export namespace Prisma {
     title?: boolean
     bannerURL?: boolean
     requiresPayment?: boolean
+    location?: boolean
     amount?: boolean
     formFields?: boolean
     isClosed?: boolean
@@ -2708,6 +2716,7 @@ export namespace Prisma {
     title?: boolean
     bannerURL?: boolean
     requiresPayment?: boolean
+    location?: boolean
     amount?: boolean
     formFields?: boolean
     isClosed?: boolean
@@ -2724,6 +2733,7 @@ export namespace Prisma {
     title?: boolean
     bannerURL?: boolean
     requiresPayment?: boolean
+    location?: boolean
     amount?: boolean
     formFields?: boolean
     isClosed?: boolean
@@ -2740,6 +2750,7 @@ export namespace Prisma {
     title?: boolean
     bannerURL?: boolean
     requiresPayment?: boolean
+    location?: boolean
     amount?: boolean
     formFields?: boolean
     isClosed?: boolean
@@ -2750,7 +2761,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "bannerURL" | "requiresPayment" | "amount" | "formFields" | "isClosed" | "startsAt" | "endsAt" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+  export type EventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "bannerURL" | "requiresPayment" | "location" | "amount" | "formFields" | "isClosed" | "startsAt" | "endsAt" | "createdById" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | UserDefaultArgs<ExtArgs>
     attendees?: boolean | Event$attendeesArgs<ExtArgs>
@@ -2774,6 +2785,7 @@ export namespace Prisma {
       title: string
       bannerURL: string
       requiresPayment: boolean
+      location: string
       amount: number | null
       formFields: Prisma.JsonValue
       isClosed: boolean
@@ -3211,6 +3223,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Event", 'String'>
     readonly bannerURL: FieldRef<"Event", 'String'>
     readonly requiresPayment: FieldRef<"Event", 'Boolean'>
+    readonly location: FieldRef<"Event", 'String'>
     readonly amount: FieldRef<"Event", 'Float'>
     readonly formFields: FieldRef<"Event", 'Json'>
     readonly isClosed: FieldRef<"Event", 'Boolean'>
@@ -7046,6 +7059,7 @@ export namespace Prisma {
     title: 'title',
     bannerURL: 'bannerURL',
     requiresPayment: 'requiresPayment',
+    location: 'location',
     amount: 'amount',
     formFields: 'formFields',
     isClosed: 'isClosed',
@@ -7327,6 +7341,7 @@ export namespace Prisma {
     title?: StringFilter<"Event"> | string
     bannerURL?: StringFilter<"Event"> | string
     requiresPayment?: BoolFilter<"Event"> | boolean
+    location?: StringFilter<"Event"> | string
     amount?: FloatNullableFilter<"Event"> | number | null
     formFields?: JsonFilter<"Event">
     isClosed?: BoolFilter<"Event"> | boolean
@@ -7344,6 +7359,7 @@ export namespace Prisma {
     title?: SortOrder
     bannerURL?: SortOrder
     requiresPayment?: SortOrder
+    location?: SortOrder
     amount?: SortOrderInput | SortOrder
     formFields?: SortOrder
     isClosed?: SortOrder
@@ -7364,6 +7380,7 @@ export namespace Prisma {
     title?: StringFilter<"Event"> | string
     bannerURL?: StringFilter<"Event"> | string
     requiresPayment?: BoolFilter<"Event"> | boolean
+    location?: StringFilter<"Event"> | string
     amount?: FloatNullableFilter<"Event"> | number | null
     formFields?: JsonFilter<"Event">
     isClosed?: BoolFilter<"Event"> | boolean
@@ -7381,6 +7398,7 @@ export namespace Prisma {
     title?: SortOrder
     bannerURL?: SortOrder
     requiresPayment?: SortOrder
+    location?: SortOrder
     amount?: SortOrderInput | SortOrder
     formFields?: SortOrder
     isClosed?: SortOrder
@@ -7404,6 +7422,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Event"> | string
     bannerURL?: StringWithAggregatesFilter<"Event"> | string
     requiresPayment?: BoolWithAggregatesFilter<"Event"> | boolean
+    location?: StringWithAggregatesFilter<"Event"> | string
     amount?: FloatNullableWithAggregatesFilter<"Event"> | number | null
     formFields?: JsonWithAggregatesFilter<"Event">
     isClosed?: BoolWithAggregatesFilter<"Event"> | boolean
@@ -7728,6 +7747,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -7744,6 +7764,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -7760,6 +7781,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -7776,6 +7798,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -7792,6 +7815,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -7807,6 +7831,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -7821,6 +7846,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -8289,6 +8315,7 @@ export namespace Prisma {
     title?: SortOrder
     bannerURL?: SortOrder
     requiresPayment?: SortOrder
+    location?: SortOrder
     amount?: SortOrder
     formFields?: SortOrder
     isClosed?: SortOrder
@@ -8308,6 +8335,7 @@ export namespace Prisma {
     title?: SortOrder
     bannerURL?: SortOrder
     requiresPayment?: SortOrder
+    location?: SortOrder
     amount?: SortOrder
     isClosed?: SortOrder
     startsAt?: SortOrder
@@ -8322,6 +8350,7 @@ export namespace Prisma {
     title?: SortOrder
     bannerURL?: SortOrder
     requiresPayment?: SortOrder
+    location?: SortOrder
     amount?: SortOrder
     isClosed?: SortOrder
     startsAt?: SortOrder
@@ -9046,6 +9075,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -9061,6 +9091,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -9105,6 +9136,7 @@ export namespace Prisma {
     title?: StringFilter<"Event"> | string
     bannerURL?: StringFilter<"Event"> | string
     requiresPayment?: BoolFilter<"Event"> | boolean
+    location?: StringFilter<"Event"> | string
     amount?: FloatNullableFilter<"Event"> | number | null
     formFields?: JsonFilter<"Event">
     isClosed?: BoolFilter<"Event"> | boolean
@@ -9258,6 +9290,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -9273,6 +9306,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -9348,6 +9382,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -9363,6 +9398,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -9578,6 +9614,7 @@ export namespace Prisma {
     title: string
     bannerURL: string
     requiresPayment?: boolean
+    location: string
     amount?: number | null
     formFields: JsonNullValueInput | InputJsonValue
     isClosed?: boolean
@@ -9592,6 +9629,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -9607,6 +9645,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean
@@ -9622,6 +9661,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     bannerURL?: StringFieldUpdateOperationsInput | string
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    location?: StringFieldUpdateOperationsInput | string
     amount?: NullableFloatFieldUpdateOperationsInput | number | null
     formFields?: JsonNullValueInput | InputJsonValue
     isClosed?: BoolFieldUpdateOperationsInput | boolean

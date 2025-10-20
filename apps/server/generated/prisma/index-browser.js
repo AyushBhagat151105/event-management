@@ -135,6 +135,7 @@ exports.Prisma.EventScalarFieldEnum = {
   title: 'title',
   bannerURL: 'bannerURL',
   requiresPayment: 'requiresPayment',
+  location: 'location',
   amount: 'amount',
   formFields: 'formFields',
   isClosed: 'isClosed',

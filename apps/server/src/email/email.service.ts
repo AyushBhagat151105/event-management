@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Attendee, Event } from 'generated/prisma';
 import * as nodemailer from 'nodemailer';
 import * as QRCode from 'qrcode';
-import type { Attendee, Event } from '@prisma/client';
+
 type TicketEmailData = Attendee & {
   event: Event;
-  ticketCode: string; // Redundant, but useful for clarity
+  ticketCode: string;
 };
 
 @Injectable()
@@ -67,54 +68,214 @@ export class EmailService {
 
     return `
       <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Your Event Ticket</title>
-          <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f4; padding: 20px; line-height: 1.6; }
-              .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; }
-              .header { background-color: #007bff; color: white; padding: 20px; text-align: center; }
-              .header h1 { margin: 0; font-size: 24px; }
-              .ticket-body { padding: 30px; }
-              .ticket-info { margin-bottom: 20px; padding: 15px; border: 1px dashed #ccc; border-radius: 4px; }
-              .ticket-info strong { display: block; margin-bottom: 5px; color: #333; }
-              .qr-section { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
-              .footer { background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #eee; }
-          </style>
-      </head>
-      <body>
-          <div class="container">
-              <div class="header">
-                  <h1>Ticket Confirmation</h1>
-              </div>
-              <div class="ticket-body">
-                  <p>Hello <strong>${data.fullName}</strong>,</p>
-                  <p>Thank you for registering for the event. Here is your official ticket for <strong>${data.event.title}</strong>.</p>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Event Ticket</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #e9eef3;
+        padding: 20px;
+        margin: 0;
+      }
+      .ticket-container {
+        max-width: 640px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        border: 1px solid #ddd;
+      }
+      .ticket-header {
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        color: #fff;
+        text-align: center;
+        padding: 25px;
+      }
+      .ticket-header h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: 1px;
+      }
+      .ticket-header p {
+        margin: 6px 0 0;
+        font-size: 14px;
+        opacity: 0.9;
+      }
 
-                  <div class="ticket-info">
-                      <strong>EVENT NAME:</strong> ${data.event.title}<br>
-                      <strong>DATE & TIME:</strong> ${eventDate}<br>
-                      <strong>ATTENDEE:</strong> ${data.fullName}<br>
-                      <strong>TICKET CODE:</strong> <code>${data.ticketCode}</code>
-                  </div>
+      /* --- TICKET BODY --- */
+      .ticket-body {
+        background: #f9fafb;
+        padding: 0;
+        position: relative;
+        border-top: 1px dashed #cbd5e1;
+        border-bottom: 1px dashed #cbd5e1;
+      }
 
-                  <p>Please bring this email (digital or print) to the event. The QR code below will be scanned for check-in.</p>
+      .ticket-stub {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+      }
 
-                  <div class="qr-section">
-                      <h3>Your Entry QR Code</h3>
-                      <img src="${qrCodeDataUrl}" alt="QR Code for Ticket" style="display: block; margin: 10px auto;">
-                      <small><strong>Ticket Code:</strong> ${data.ticketCode}</small>
-                  </div>
-              </div>
-              <div class="footer">
-                  <p>This is an automated email. Please do not reply.</p>
-                  <p>&copy; ${new Date().getFullYear()} Your Company Name</p>
-              </div>
+      /* LEFT side (Details) */
+      .ticket-left {
+        width: 65%;
+        padding: 25px 30px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        border-right: 1px dashed #cbd5e1;
+      }
+
+      .ticket-left h2 {
+        color: #1e293b;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .ticket-detail {
+        margin-bottom: 12px;
+      }
+
+      .ticket-detail span {
+        display: block;
+        font-size: 13px;
+        color: #64748b;
+        margin-bottom: 4px;
+      }
+
+      .ticket-detail strong {
+        font-size: 15px;
+        color: #1e293b;
+      }
+
+      .highlight-box {
+        margin-top: 18px;
+        background: linear-gradient(90deg, #2563eb10, #1e40af10);
+        padding: 14px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 600;
+        color: #1e3a8a;
+        letter-spacing: 0.5px;
+      }
+
+      /* RIGHT side (QR Code Section) */
+      .ticket-right {
+        width: 35%;
+        background: #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+      }
+
+      .qr-wrapper {
+        background: #fff;
+        border: 2px dashed #94a3b8;
+        border-radius: 12px;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .qr-wrapper img {
+        width: 140px;
+        height: 140px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .ticket-code {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #475569;
+      }
+
+      .right-label {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        background: #2563eb;
+        color: white;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        letter-spacing: 0.5px;
+      }
+
+      /* --- FOOTER --- */
+      .footer {
+        background: #f1f5f9;
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #6b7280;
+        border-top: 1px solid #e2e8f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ticket-container">
+      <!-- HEADER -->
+      <div class="ticket-header">
+        <h1>${data.event.title}</h1>
+        <p>Official Entry Ticket</p>
+      </div>
+
+      <!-- BODY -->
+      <div class="ticket-body">
+        <div class="ticket-stub">
+          <!-- LEFT -->
+          <div class="ticket-left">
+            <h2>Event Pass</h2>
+            <div class="ticket-detail">
+              <span>Attendee Name</span>
+              <strong>${data.fullName}</strong>
+            </div>
+            <div class="ticket-detail">
+              <span>Date & Time</span>
+              <strong>${eventDate}</strong>
+            </div>
+            <div class="ticket-detail">
+              <span>Email</span>
+              <strong>${data.email}</strong>
+            </div>
+            <div class="ticket-detail">
+              <span>Loaction</span>
+              <strong>${data.event.location}</strong>
+            </div>
+            <div class="highlight-box">
+              🎟 Ticket ID: ${data.ticketCode}
+            </div>
           </div>
-      </body>
-      </html>
+
+          <!-- RIGHT -->
+          <div class="ticket-right">
+            <div class="right-label">SCAN HERE</div>
+            <div class="qr-wrapper">
+              <img src="${qrCodeDataUrl}" alt="QR Code" />
+              <div class="ticket-code">${data.ticketCode}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <p>This is an automated email. Please do not reply.</p>
+        <p>&copy; ${new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+
     `;
   }
 

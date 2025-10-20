@@ -28,6 +28,7 @@ model Event {
   title           String
   bannerURL       String
   requiresPayment Boolean   @default(false)
+  location        String
   amount          Float? // Ticket price if requiresPayment=true
   formFields      Json // Dynamic registration form
   isClosed        Boolean   @default(false)

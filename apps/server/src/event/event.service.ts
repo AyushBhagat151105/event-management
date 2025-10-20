@@ -54,6 +54,7 @@ export class EventService {
           title: true,
           bannerURL: true,
           requiresPayment: true,
+          
           amount: true,
           formFields: true,
           startsAt: true,
