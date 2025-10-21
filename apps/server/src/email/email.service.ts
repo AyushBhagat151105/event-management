@@ -74,12 +74,18 @@ export class EmailService {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Event Ticket</title>
     <style>
+      /* RESET */
+      body, html {
+        margin: 0;
+        padding: 0;
+      }
+
       body {
         font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         background-color: #e9eef3;
         padding: 20px;
-        margin: 0;
       }
+
       .ticket-container {
         max-width: 640px;
         margin: 0 auto;
@@ -89,28 +95,28 @@ export class EmailService {
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         border: 1px solid #ddd;
       }
+
+      /* HEADER */
       .ticket-header {
         background: linear-gradient(135deg, #2563eb, #1e40af);
         color: #fff;
         text-align: center;
-        padding: 25px;
+        padding: 25px 15px;
       }
       .ticket-header h1 {
         margin: 0;
         font-size: 26px;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
       }
       .ticket-header p {
-        margin: 6px 0 0;
+        margin: 8px 0 0;
         font-size: 14px;
         opacity: 0.9;
       }
 
-      /* --- TICKET BODY --- */
+      /* BODY */
       .ticket-body {
         background: #f9fafb;
-        padding: 0;
-        position: relative;
         border-top: 1px dashed #cbd5e1;
         border-bottom: 1px dashed #cbd5e1;
       }
@@ -119,14 +125,16 @@ export class EmailService {
         display: flex;
         flex-direction: row;
         align-items: stretch;
+        flex-wrap: wrap;
       }
 
-      /* LEFT side (Details) */
+      /* LEFT SECTION */
       .ticket-left {
-        width: 65%;
+        flex: 1 1 60%;
         padding: 25px 30px;
         background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
         border-right: 1px dashed #cbd5e1;
+        box-sizing: border-box;
       }
 
       .ticket-left h2 {
@@ -162,15 +170,16 @@ export class EmailService {
         letter-spacing: 0.5px;
       }
 
-      /* RIGHT side (QR Code Section) */
+      /* RIGHT SECTION */
       .ticket-right {
-        width: 35%;
+        flex: 1 1 40%;
         background: #f1f5f9;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 25px;
+        box-sizing: border-box;
         position: relative;
       }
 
@@ -178,13 +187,13 @@ export class EmailService {
         background: #fff;
         border: 2px dashed #94a3b8;
         border-radius: 12px;
-        padding: 10px;
+        padding: 12px;
         text-align: center;
       }
 
       .qr-wrapper img {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
         display: block;
         margin: 0 auto;
       }
@@ -193,6 +202,7 @@ export class EmailService {
         margin-top: 8px;
         font-size: 13px;
         color: #475569;
+        word-break: break-all;
       }
 
       .right-label {
@@ -208,7 +218,7 @@ export class EmailService {
         letter-spacing: 0.5px;
       }
 
-      /* --- FOOTER --- */
+      /* FOOTER */
       .footer {
         background: #f1f5f9;
         padding: 15px;
@@ -216,6 +226,76 @@ export class EmailService {
         font-size: 12px;
         color: #6b7280;
         border-top: 1px solid #e2e8f0;
+      }
+
+      /* RESPONSIVE STYLES */
+      @media (max-width: 600px) {
+        body {
+          padding: 10px;
+        }
+
+        .ticket-container {
+          border-radius: 10px;
+        }
+
+        .ticket-header h1 {
+          font-size: 20px;
+        }
+
+        .ticket-left,
+        .ticket-right {
+          width: 100%;
+          flex: 1 1 100%;
+          border-right: none;
+          border-bottom: 1px dashed #cbd5e1;
+          padding: 20px;
+        }
+
+        .ticket-right {
+          border-bottom: none;
+          padding-top: 10px;
+        }
+
+        .qr-wrapper img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .highlight-box {
+          font-size: 14px;
+        }
+
+        .right-label {
+          position: static;
+          margin-bottom: 8px;
+          border-radius: 6px;
+          display: inline-block;
+          padding: 4px 8px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .ticket-left h2 {
+          font-size: 18px;
+        }
+
+        .ticket-detail strong {
+          font-size: 14px;
+        }
+
+        .ticket-detail span {
+          font-size: 12px;
+        }
+
+        .qr-wrapper img {
+          width: 100px;
+          height: 100px;
+        }
+
+        .highlight-box {
+          padding: 10px;
+          font-size: 13px;
+        }
       }
     </style>
   </head>
@@ -247,7 +327,7 @@ export class EmailService {
               <strong>${data.email}</strong>
             </div>
             <div class="ticket-detail">
-              <span>Loaction</span>
+              <span>Location</span>
               <strong>${data.event.location}</strong>
             </div>
             <div class="highlight-box">
@@ -274,6 +354,7 @@ export class EmailService {
     </div>
   </body>
 </html>
+
 
 
     `;

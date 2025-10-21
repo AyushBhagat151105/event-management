@@ -23,7 +23,9 @@ export class EventService {
         },
       });
 
-      return event;
+      return {
+        message: 'Event Created Succesfully',
+      };
     } catch (error) {
       throw new BadRequestException(error.message || 'Failed to create event');
     }
@@ -54,7 +56,7 @@ export class EventService {
           title: true,
           bannerURL: true,
           requiresPayment: true,
-          
+
           amount: true,
           formFields: true,
           startsAt: true,

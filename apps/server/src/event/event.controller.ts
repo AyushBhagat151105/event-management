@@ -49,7 +49,9 @@ export class EventController {
   })
   @ApiCreatedResponse({
     description: 'Event created successfully',
-    type: EventResponseDto,
+    schema: {
+      example: { message: 'Event Created Succesfully' },
+    },
   })
   @ApiBadRequestResponse({
     description: 'Invalid input data or failed to create event',
