@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Attendee, Event } from 'generated/prisma';
+import { Attendee, Event, Ticket } from 'generated/prisma';
 import * as nodemailer from 'nodemailer';
 import * as QRCode from 'qrcode';
 
@@ -360,7 +360,11 @@ export class EmailService {
     `;
   }
 
-  async sendTicketEmail(attendee: Attendee, event: Event): Promise<void> {
+  async sendTicketEmail(
+    attendee: Attendee,
+    event: Event,
+    ticket: Ticket,
+  ): Promise<void> {
     if (!attendee.ticketCode) {
       this.logger.error(`Attendee ${attendee.id} is missing a ticketCode.`);
       throw new Error('Ticket code is required to send email.');
@@ -369,7 +373,7 @@ export class EmailService {
     const ticketData: TicketEmailData = {
       ...attendee,
       event,
-      ticketCode: attendee.ticketCode,
+      ticketCode: ticket.id,
     };
 
     // 2. Generate QR Code

@@ -46,7 +46,15 @@ export class RegisterEventService {
       throw new NotFoundException('Event not found.');
     }
 
-    await this.emailService.sendTicketEmail(attendee, event);
+    const ticket = await this.prisma.ticket.create({
+      data: {
+        attendeeId: attendee.id,
+        checkedIn: false,
+        issuedAt: new Date().toISOString(),
+      },
+    });
+
+    await this.emailService.sendTicketEmail(attendee, event, ticket);
 
     return {
       message: 'Registration successful',
