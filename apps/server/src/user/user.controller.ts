@@ -23,12 +23,12 @@ import { ReigsterDto } from './dto/register.dto';
 import { LoginDto } from './dto/Login.dto';
 
 import { UserGuard } from './user.guard';
-import type { AuthenticatedRequest } from 'src/types/authenticated-request.interface.ts';
 import {
   AuthResponseDto,
   LogoutResponseDto,
   UserProfileResponseDto,
 } from './dto/user-response.dto';
+import type { AuthenticatedRequest } from 'src/types/authenticated-request.interface.ts';
 
 @ApiTags('User')
 @Controller('user')

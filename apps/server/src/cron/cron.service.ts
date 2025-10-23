@@ -14,7 +14,7 @@ export class CronService {
     const now = new Date();
 
     try {
-      // Find all active events that have ended
+    
       const eventsToClose = await this.prisma.event.findMany({
         where: {
           isClosed: false,
@@ -23,7 +23,7 @@ export class CronService {
       });
 
       if (eventsToClose.length > 0) {
-        // Close them all
+    
         const updatePromises = eventsToClose.map((event) =>
           this.prisma.event.update({
             where: { id: event.id },

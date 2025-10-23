@@ -7,9 +7,10 @@ import { EmailModule } from './email/email.module';
 import { RegisterEventModule } from './register-event/register-event.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CronModule } from './cron/cron.module';
+import { AttendeeModule } from './attendee/attendee.module';
 
 @Module({
-  imports: [UserModule, EventModule, EmailModule, RegisterEventModule, ScheduleModule.forRoot(), CronModule],
+  imports: [UserModule, EventModule, EmailModule, RegisterEventModule, ScheduleModule.forRoot(), CronModule, AttendeeModule],
   controllers: [AppController],
   providers: [AppService],
 })
